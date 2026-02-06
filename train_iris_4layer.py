@@ -4,7 +4,6 @@ import torch.optim as optim
 import csv
 from sa_nn import export_sa_nn
 
-# Load Iris dataset
 def load_iris_data():
     # Define the classic iris dataset
     iris_data = [
@@ -168,7 +167,6 @@ def load_iris_data():
     
     return torch.tensor(X, dtype=torch.float32), torch.tensor(y, dtype=torch.long)
 
-# Define a 4-layer neural network for Iris classification
 class IrisNet4Layer(nn.Module):
     def __init__(self):
         super().__init__()
@@ -217,12 +215,10 @@ with torch.no_grad():
     accuracy = (predicted == y).float().mean()
     print(f'Training Accuracy: {accuracy:.4f}')
 
-# Export the model using SA-NN with PROGMEM support
 print("\nExporting 4-layer Iris model to SA-NN format with PROGMEM...")
 export_sa_nn(model, filename="iris_model.h", use_progmem=True)
 print("4-layer Iris model with PROGMEM exported successfully!")
 
-# Test with some sample inputs
 test_inputs = [
     [5.1, 3.5, 1.4, 0.2],  # Expected: setosa (class 0)
     [7.0, 3.2, 4.7, 1.4],  # Expected: versicolor (class 1) 
