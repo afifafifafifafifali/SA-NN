@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.optim as optim
 from sa_nn import export_sa_nn
 
-# Create a comprehensive sentiment analysis dataset
 def create_comprehensive_sentiment_data():
     # Expanded vocabulary for better sentiment analysis
     vocab = {
@@ -26,7 +25,6 @@ def create_comprehensive_sentiment_data():
         "not": 55, "but": 56, "and": 57, "the": 58, "this": 59
     }
     
-    # Training examples: diverse positive and negative reviews
     positive_reviews = [
         "this movie is great and excellent",
         "amazing film with wonderful story",
@@ -63,7 +61,6 @@ def create_comprehensive_sentiment_data():
         "abysmal movie with pathetic performance"
     ]
     
-    # Convert reviews to feature vectors (binary presence)
     def text_to_features(text, vocab):
         features = [0] * len(vocab)
         words = text.lower().split()
@@ -88,7 +85,6 @@ def create_comprehensive_sentiment_data():
     
     return torch.tensor(X_train, dtype=torch.float32), torch.tensor(y_train, dtype=torch.long), vocab
 
-# Define a sentiment analysis model suitable for embedded systems
 class EmbeddedSentimentModel(nn.Module):
     def __init__(self, vocab_size):
         super().__init__()
@@ -104,21 +100,18 @@ class EmbeddedSentimentModel(nn.Module):
         x = self.fc3(x)
         return x
 
-# Create training data
 X_train, y_train, vocab = create_comprehensive_sentiment_data()
 vocab_size = len(vocab)
 
 print(f"Vocabulary size: {vocab_size}")
 print(f"Training samples: {len(X_train)}")
 
-# Create and train the model
 model = EmbeddedSentimentModel(vocab_size)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 print("Training embedded sentiment model...")
 
-# Training loop
 for epoch in range(25):
     optimizer.zero_grad()
     outputs = model(X_train)
@@ -129,7 +122,6 @@ for epoch in range(25):
     if (epoch + 1) % 5 == 0:
         print(f'Epoch [{epoch+1}/25], Loss: {loss.item():.4f}')
 
-# Test the trained model
 model.eval()
 with torch.no_grad():
     predictions = model(X_train)
