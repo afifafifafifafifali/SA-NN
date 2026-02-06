@@ -21,4 +21,4 @@ Usage is currently in USAGE.md
 
 ## Benchmarks
 
-A benchmark on a arduino and a computer will be conducted. Will be avialiable soon!
+2 benchmarks are avialiable. Extra comments are added to TEACH the NEWBIES
