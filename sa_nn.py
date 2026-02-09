@@ -58,6 +58,8 @@ def export_sa_nn(
     Set use_progmem to true if you want less RAM usage and more usage of flash memory.(arduino only)
     """
 
+    if use_progmem:
+        print("BULDING FOR ARCH:ARDUINO (AVRDUDE)")
     layer_stack = []
     for _, module in model.named_modules():
         if isinstance(module, nn.Linear):
